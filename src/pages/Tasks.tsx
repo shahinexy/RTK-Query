@@ -1,9 +1,10 @@
 // import { seletTasks, updateFilter } from "@/redux/features/task/taskSlice";
 // import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-// import TaskCard from "./../components/module/TaskCard";
+import TaskCard from "./../components/module/TaskCard";
 import { AddTaskModal } from "@/components/module/AddTaskModal";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useGetTasksQuery } from "@/redux/api/baseApi";
+import { ITask } from "@/types";
 
 const Tasks = () => {
   // const task = useAppSelector(seletTasks);
@@ -12,9 +13,17 @@ const Tasks = () => {
 
   // console.log(task);
 
-  const { data, isError, isLoading } = useGetTasksQuery(undefined);
+  const { data, isLoading } = useGetTasksQuery(undefined);
 
-  console.log({data, isError, isLoading});
+  console.log(data);
+
+  if (isLoading) {
+    return (
+      <div className="w-full h-[100vh] flex justify-center items-center text-2xl text-green-500">
+        Loading...
+      </div>
+    );
+  }
   return (
     <div className="max-w-7xl mx-auto py-7">
       <div className="flex justify-between">
@@ -28,9 +37,9 @@ const Tasks = () => {
           </TabsList>
         </Tabs>
       </div>
-      {/* {task.map((task) => (
+      {!isLoading && data?.tasks.map((task: ITask) => (
         <TaskCard key={task.id} task={task} />
-      ))} */}
+      ))}
     </div>
   );
 };
