@@ -1,9 +1,9 @@
 import { ITask } from "@/types";
-import { Button } from "../ui/button";
+// import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { deleteTask, toggleConpleteState } from "@/redux/features/task/taskSlice";
-import { SeletUser } from "@/redux/features/users/userSlice";
+// import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+// import { deleteTask, toggleConpleteState } from "@/redux/features/task/taskSlice";
+// import { SeletUser } from "@/redux/features/users/userSlice";
 
 interface IProps {
     task: ITask
@@ -11,11 +11,11 @@ interface IProps {
 
 const TaskCard = ({task}: IProps) => {
 
-  const dispatch = useAppDispatch()
+  // const dispatch = useAppDispatch()
 
-  const users = useAppSelector(SeletUser)
+  // const users = useAppSelector(SeletUser)
 
-  const assignUser = users.find(user => user.id === task.assignTo)
+  // const assignUser = users.find(user => user.id === task.assignTo)
 
   return (
     <div className="border border-gray-400 my-2 p-5">
@@ -30,11 +30,11 @@ const TaskCard = ({task}: IProps) => {
           <p className={cn({'line-through': task.isCompleted})}>{task?.title}</p>
         </div>
         <div className="flex gap-3">
-            <Button onClick={()=> dispatch(deleteTask(task.id))}>Delete</Button>
-            <input type="checkbox" checked={task.isCompleted} onClick={()=> dispatch(toggleConpleteState(task.id))} />
+            {/* <Button onClick={()=> dispatch(deleteTask(task.id))}>Delete</Button>
+            <input type="checkbox" checked={task.isCompleted} onClick={()=> dispatch(toggleConpleteState(task.id))} /> */}
         </div>
       </div>
-      <p className="pb-5">Assign To: {assignUser ? assignUser.name : 'No One'}</p>
+      {/* <p className="pb-5">Assign To: {assignUser ? assignUser.name : 'No One'}</p> */}
       <p>{task?.description}</p>
     </div>
   );

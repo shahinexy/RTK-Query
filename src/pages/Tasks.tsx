@@ -1,31 +1,36 @@
+// import { seletTasks, updateFilter } from "@/redux/features/task/taskSlice";
+// import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+// import TaskCard from "./../components/module/TaskCard";
 import { AddTaskModal } from "@/components/module/AddTaskModal";
-import { seletTasks, updateFilter } from "@/redux/features/task/taskSlice";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import TaskCard from "./../components/module/TaskCard";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useGetTasksQuery } from "@/redux/api/baseApi";
 
 const Tasks = () => {
-  const task = useAppSelector(seletTasks);
+  // const task = useAppSelector(seletTasks);
 
-  const dispatch = useAppDispatch()
+  // const dispatch = useAppDispatch()
 
-  console.log(task);
+  // console.log(task);
+
+  const { data, isError, isLoading } = useGetTasksQuery(undefined);
+
+  console.log({data, isError, isLoading});
   return (
     <div className="max-w-7xl mx-auto py-7">
       <div className="flex justify-between">
         <AddTaskModal />
-        <Tabs defaultValue="all" >
+        <Tabs defaultValue="all">
           <TabsList>
-            <TabsTrigger onClick={()=> dispatch(updateFilter("all"))} value="all">All</TabsTrigger>
-            <TabsTrigger onClick={()=> dispatch(updateFilter("low"))} value="low">Low</TabsTrigger>
-            <TabsTrigger onClick={()=> dispatch(updateFilter("medium"))} value="medium">Medium</TabsTrigger>
-            <TabsTrigger onClick={()=> dispatch(updateFilter("high"))} value="high">High</TabsTrigger>
+            <TabsTrigger value="all">All</TabsTrigger>
+            <TabsTrigger value="low">Low</TabsTrigger>
+            <TabsTrigger value="medium">Medium</TabsTrigger>
+            <TabsTrigger value="high">High</TabsTrigger>
           </TabsList>
         </Tabs>
       </div>
-      {task.map((task) => (
+      {/* {task.map((task) => (
         <TaskCard key={task.id} task={task} />
-      ))}
+      ))} */}
     </div>
   );
 };

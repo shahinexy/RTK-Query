@@ -1,21 +1,21 @@
 import { Outlet } from "react-router-dom";
-import { ModeToggle } from "./components/ui/mode-toggle";
-import { Button } from "./components/ui/button";
-import { decrement, increment } from "./redux/features/counter/CounterSlice";
-import { useAppDispatch, useAppSelector } from "./redux/hooks";
+// import { ModeToggle } from "./components/ui/mode-toggle";
+// import { Button } from "./components/ui/button";
+// import { decrement, increment } from "./redux/features/counter/CounterSlice";
+// import { useAppDispatch, useAppSelector } from "./redux/hooks";
 import NavBar from "./components/layout/NavBar";
 
 function App() {
-  const dispatch = useAppDispatch()
-  const {count} = useAppSelector((state)=> state.counter)
+  // const dispatch = useAppDispatch()
+  // const {count} = useAppSelector((state)=> state.counter)
 
-  const handleIncrement = (payload: number)=>{
-    dispatch(increment(payload))
-  }
+  // const handleIncrement = (payload: number)=>{
+  //   dispatch(increment(payload))
+  // }
 
-  const handleDecrement = (payload: number)=>{
-    dispatch(decrement(payload))
-  }
+  // const handleDecrement = (payload: number)=>{
+  //   dispatch(decrement(payload))
+  // }
 
   return (
     <>

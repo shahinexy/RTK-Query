@@ -24,22 +24,23 @@ import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { addTask } from "@/redux/features/task/taskSlice";
-import { ITask } from "@/types";
-import { SeletUser } from "@/redux/features/users/userSlice";
+// import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+// import { addTask } from "@/redux/features/task/taskSlice";
+// import { ITask } from "@/types";
+// import { SeletUser } from "@/redux/features/users/userSlice";
 import { useState } from "react";
 
 export function AddTaskModal() {
   const [open, setOpen] = useState(false)
   const form = useForm();
 
-  const dispatch = useAppDispatch();
+//   const dispatch = useAppDispatch();
 
-  const users = useAppSelector(SeletUser);
+//   const users = useAppSelector(SeletUser);
 
   const onSubmit: SubmitHandler<FieldValues> = (payload) => {
-    dispatch(addTask(payload as ITask));
+    // dispatch(addTask(payload as ITask));
+    console.log(payload);
     setOpen(false);
     form.reset()
   };
@@ -124,11 +125,11 @@ export function AddTaskModal() {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        {users.map((user) => (
+                        {/* {users.map((user) => (
                           <SelectItem key={user.id} value={user.id}>
                             {user.name}
                           </SelectItem>
-                        ))}
+                        ))} */}
                       </SelectContent>
                     </Select>
                   </FormControl>
