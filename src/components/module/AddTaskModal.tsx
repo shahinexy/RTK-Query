@@ -24,26 +24,30 @@ import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
-// import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-// import { addTask } from "@/redux/features/task/taskSlice";
-// import { ITask } from "@/types";
-// import { SeletUser } from "@/redux/features/users/userSlice";
 import { useState } from "react";
+import { useCreateTaskMutation } from "@/redux/api/baseApi";
 
 export function AddTaskModal() {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
   const form = useForm();
 
-//   const dispatch = useAppDispatch();
+  const [createTask, { data, isLoading }] = useCreateTaskMutation();
 
-//   const users = useAppSelector(SeletUser);
+  const onSubmit: SubmitHandler<FieldValues> = async (payload) => {
+    const taskData = {
+      ...payload,
+      isCompleted: false,
+    };
 
-  const onSubmit: SubmitHandler<FieldValues> = (payload) => {
-    // dispatch(addTask(payload as ITask));
     console.log(payload);
+
+    const res = await createTask(taskData).unwrap();
+    console.log(res);
+
     setOpen(false);
-    form.reset()
+    form.reset();
   };
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
@@ -108,7 +112,7 @@ export function AddTaskModal() {
               )}
             />
 
-            <FormField
+            {/* <FormField
               control={form.control}
               name="assignTo"
               render={({ field }) => (
@@ -125,17 +129,17 @@ export function AddTaskModal() {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        {/* {users.map((user) => (
+                        {users.map((user) => (
                           <SelectItem key={user.id} value={user.id}>
                             {user.name}
                           </SelectItem>
-                        ))} */}
+                        ))}
                       </SelectContent>
                     </Select>
                   </FormControl>
                 </FormItem>
               )}
-            />
+            /> */}
 
             <FormField
               control={form.control}

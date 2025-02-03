@@ -1,5 +1,3 @@
-// import { seletTasks, updateFilter } from "@/redux/features/task/taskSlice";
-// import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import TaskCard from "./../components/module/TaskCard";
 import { AddTaskModal } from "@/components/module/AddTaskModal";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -7,15 +5,10 @@ import { useGetTasksQuery } from "@/redux/api/baseApi";
 import { ITask } from "@/types";
 
 const Tasks = () => {
-  // const task = useAppSelector(seletTasks);
-
-  // const dispatch = useAppDispatch()
-
-  // console.log(task);
-
-  const { data, isLoading } = useGetTasksQuery(undefined);
-
-  console.log(data);
+  const { data, isLoading } = useGetTasksQuery(undefined, {
+    refetchOnReconnect: true,
+    refetchOnMountOrArgChange: true,
+  });
 
   if (isLoading) {
     return (
@@ -37,9 +30,10 @@ const Tasks = () => {
           </TabsList>
         </Tabs>
       </div>
-      {!isLoading && data?.tasks.map((task: ITask) => (
-        <TaskCard key={task.id} task={task} />
-      ))}
+      {!isLoading &&
+        data?.tasks.map((task: ITask) => (
+          <TaskCard key={task.id} task={task} />
+        ))}
     </div>
   );
 };

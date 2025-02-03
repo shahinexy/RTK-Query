@@ -1,5 +1,5 @@
 import { ITask } from "@/types";
-// import { Button } from "../ui/button";
+import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
 // import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 // import { deleteTask, toggleConpleteState } from "@/redux/features/task/taskSlice";
@@ -30,8 +30,8 @@ const TaskCard = ({task}: IProps) => {
           <p className={cn({'line-through': task.isCompleted})}>{task?.title}</p>
         </div>
         <div className="flex gap-3">
-            {/* <Button onClick={()=> dispatch(deleteTask(task.id))}>Delete</Button>
-            <input type="checkbox" checked={task.isCompleted} onClick={()=> dispatch(toggleConpleteState(task.id))} /> */}
+            <Button >Delete</Button>
+            <input type="checkbox" />
         </div>
       </div>
       {/* <p className="pb-5">Assign To: {assignUser ? assignUser.name : 'No One'}</p> */}
